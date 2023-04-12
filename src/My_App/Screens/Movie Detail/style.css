@@ -1,0 +1,221 @@
+.movie_det_image_bg {
+    max-width: 100%;
+    position: relative;
+}
+
+.detail_poster_div {
+    margin-left: 12px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.movie-detail-flex1 {
+    position: sticky;
+    left: 10px;
+    top: 60px;
+    height: fit-content;
+}
+
+.react-tabs__tab--selected {
+    border-bottom: 2px solid yellowgreen;
+}
+
+.react-tabs>ul {
+    width: 300px;
+}
+
+.cast_original_name {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+}
+
+.cast_original_name>a {
+    text-decoration: none;
+    color: rgb(61, 55, 55);
+    cursor: pointer;
+}
+
+.cast_person_link {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    padding: 6px;
+    border-radius: 4px;
+    margin: 2px 3px 0px 0px
+}
+
+.cast_original_name>a:hover {
+    background-color: greenyellow;
+}
+
+.crew {
+    background-color: red;
+}
+
+.tab-crew-headings {
+    border-bottom: 1px dotted #456;
+    /* clear: left; */
+    float: left;
+    font-size: 1rem;
+    margin-top: 2px;
+    width: 12em;
+}
+
+.tab-crew {
+    margin-bottom: 20px;
+}
+
+.crew-heading {
+    background-color: white;
+    font-weight: 400;
+    letter-spacing: .075em;
+    position: relative;
+    text-transform: uppercase;
+    top: 3px;
+}
+
+.movie-detail-flex3 {
+    height: 100%;
+    background-color: red;
+    /* position: relative; */
+    /* right: 10px; */
+    /* margin-top: 15%; */
+}
+
+.side-content-right {
+    background-color: green;
+}
+
+.movie-detail-flex2 {
+    width: 600px;
+    margin-left: 10px;
+}
+
+/* .movie-detail-flex2>h2 {
+    position: sticky;
+    left: 10px;
+    top: 55px;
+    background: white;
+    z-index: 1;
+} */
+
+.movie_detail_poster_img {
+    width: 200px;
+    height: 300px;
+    border-radius: 10px
+}
+
+.reviews_div {
+    /* background-color: red; */
+    margin-top: 50px;
+}
+
+/* .reviews_div>h3 {
+    position: sticky;
+    left: 10px;
+    top: 55px;
+    background: white;
+    height: 30px;
+    z-index: 1;
+} */
+.review-avatar-img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.similar-movies-container {
+    margin-top: 40px;
+}
+
+.sideInfo_right_Inactive {
+    display: none;
+    background-color: red;
+    padding: 10px;
+    transition: all 2s ease;
+}
+
+.sideInfo_right_active {
+    position: sticky;
+    top: 60px;
+    right: 0;
+    height: 100vh;
+    overflow: scroll;
+    background-color: red;
+    width: 300px;
+    transition: all 2s ease;
+}
+
+.SideBarModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    animation: mymove 0.6s forwards;
+    opacity: 0.4;
+    overflow: auto;
+    border-radius: 10px;
+    background-color: white;
+    width: 300px;
+    height: 97vh;
+    box-shadow: grey 1px 1px 7px 0px;
+    outline: none
+}
+
+@keyframes mymove {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.2;
+    }
+
+    40% {
+        opacity: 0.4;
+    }
+
+    60% {
+        opacity: 0.6;
+    }
+
+
+    80% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.search_google {
+    display: flex;
+    margin: 35px;
+    box-shadow: 0 1px 2px 0 rgba(38, 43, 46, 0.3), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    border-radius: 90px;
+    cursor: pointer;
+}
+
+.search_google>button {
+    border: none;
+    background: white;
+    font-weight: bold;
+}
+
+.signIn_class {
+    background-color: goldenrod;
+    color: white;
+    padding: 5px;
+}
+
+.authModal {
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    width: fit-content;
+    margin: auto;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+}

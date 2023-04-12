@@ -1,0 +1,4 @@
+
+  .movie_div:hover>img {
+    filter: blur(4px);
+  }

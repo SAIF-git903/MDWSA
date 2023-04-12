@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.social-container {
+    margin: 20px 0;
+    
+}
+
+.form_main_cont {
+    height: fit-content;
+    width: 45%;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.social-container a {
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.signUp_form {
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.signUp_form>form>div>input {
+    background-color: #eee;
+    border: none;
+    outline: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 5px;
+}
+
+.signUp_form>form>button {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin-top: 30px;
+}

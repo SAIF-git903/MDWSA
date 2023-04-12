@@ -1,0 +1,25 @@
+.main_page_content_container {
+  margin: 50px;
+}
+
+.content_cont {
+  width: 100%;
+  margin-left: -9px;
+}
+
+.movies_div {
+  margin: 20px 30px 30px;
+}
+
+.trending_movies_latest {
+  margin-left: 12px;
+}
+
+.image_poster {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
