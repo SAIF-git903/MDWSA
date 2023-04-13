@@ -1,6 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './style.css';
+import { auth, db } from '../../Firebase/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { async } from '@firebase/util';
+const express = require('express');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const LoginSignupForm = () => {
@@ -9,26 +15,47 @@ const LoginSignupForm = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const app = express();
+
+    
     // Function to create a TMDB user account
-    const createTMDBAccount = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post('https://api.themoviedb.org/3/account', {
-                username: username,
-                password: password,
-                api_key: '583d43563d202f1e6dd6e28704ca9624'
-            });
+    const createTMDBAccount = async () => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(async (cred) => {
+                const usersColRef = collection(db, "users")
+                const parentDocRef = doc(usersColRef, cred.user.uid);
+                await setDoc(parentDocRef, {})
+            })
+        let URL = `https://api.themoviedb.org/3/authentication/token/new?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
 
-            // Handle the response
-            console.log(response.data);
-            // You can save the user session ID or other data from the response as needed
+        axios.get(URL)
+            .then((res) => {
+                const requestToken = res.data.request_token
+                // let authenticateUrl = `https://www.themoviedb.org/authenticate/${requestToken}`
+                // Configure proxy
+                app.use(
+                    `/authenticate/${requestToken}`, // Update this to match your TMDP API endpoint
+                    createProxyMiddleware({
+                        target: 'https://www.themoviedb.org', // Update this to match your TMDP API URL
+                        changeOrigin: true,
+                        // Add any additional headers as needed
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            // Add any other required headers
+                        },
+                    })
+                );
 
-        } catch (error) {
-            // Handle any errors that occur during the request
-            console.error('Error creating TMDB account:', error);
-        }
+                // Start the proxy server
+                app.listen(3001, () => {
+                    console.log('Proxy server is running on http://localhost:3001');
+                });
+
+
+            }).catch((err) => {
+                console.log(err)
+            })
     };
-
 
 
     return (
@@ -41,9 +68,9 @@ const LoginSignupForm = () => {
                         <input type="email" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
                         <input type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
                     </div>
-                    <button onClick={(event) => createTMDBAccount(event)}>Sign Up</button>
                 </form>
             </div>
+            <button onClick={() => createTMDBAccount()}>Sign Up</button>
             {/* <form action="#">
                 <h1>Sign in</h1>
                 <div className="social-container">

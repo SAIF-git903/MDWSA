@@ -6,8 +6,7 @@ import NavBar from '../../Components/NavBar';
 
 function Home() {
 
-    const navigate = useNavigate();
-
+    console.log(process.env)
    
     return (
         <>

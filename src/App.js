@@ -9,6 +9,7 @@ import RouterRoutes from './My_App/Router';
 import NavBar from './My_App/Components/NavBar';
 import { BrowserRouter } from 'react-router-dom';
 
+
 function App() {
   return (
     <div className="App">

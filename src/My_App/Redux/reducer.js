@@ -7,7 +7,10 @@ import {
     FETCH_MOVIE_DETAIL_ERROR,
     FETCH_PERSON_DETAIL_REQUEST,
     FETCH_PERSON_DETAIL_SUCCESS,
-    FETCH_PERSON_DETAIL_ERROR
+    FETCH_PERSON_DETAIL_ERROR,
+    FETCH_USER_SESSION_ID_REQUEST,
+    FETCH_USER_SESSION_ID_SUCCESS,
+    FETCH_USER_SESSION_ID_ERROR
 } from "./constants";
 
 
@@ -24,6 +27,7 @@ const reducer = (state = initalState, { type, payload }) => {
     switch (type) {
         case FETCH_MOVIES_REQUEST:
         case FETCH_MOVIE_DETAIL_REQUEST:
+        case FETCH_USER_SESSION_ID_REQUEST:
             return {
                 ...state,
                 isLoading: true
@@ -50,9 +54,15 @@ const reducer = (state = initalState, { type, payload }) => {
                 personDetailsLoading: false,
                 personDataWithId: payload,
             }
+        case FETCH_USER_SESSION_ID_SUCCESS:
+            return {
+                ...state,
+                popularMoviesLatest: payload
+            }
         case FETCH_MOVIES_ERROR:
         case FETCH_MOVIE_DETAIL_ERROR:
         case FETCH_PERSON_DETAIL_ERROR:
+        case FETCH_USER_SESSION_ID_ERROR:
             return {
                 ...state,
                 error: payload,

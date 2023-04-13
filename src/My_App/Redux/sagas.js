@@ -1,14 +1,25 @@
 import { genreMap } from "../../Genre"
 import { put, take, takeLatest, call, all } from "redux-saga/effects"
-import { fetchMoviesSuccess, fetchMoviesError, fetchMovieDetailSuccess, fetchMovieDetailError, fetchPersonDetailSuccess, fetchPersonDetailError } from "./actions"
-import { FETCH_MOVIES_REQUEST, FETCH_MOVIE_DETAIL_REQUEST, FETCH_PERSON_DETAIL_REQUEST } from "./constants"
+import {
+    fetchMoviesSuccess,
+    fetchMoviesError,
+    fetchMovieDetailSuccess,
+    fetchMovieDetailError,
+    fetchPersonDetailSuccess,
+    fetchPersonDetailError
+} from "./actions"
+import {
+    FETCH_MOVIES_REQUEST,
+    FETCH_MOVIE_DETAIL_REQUEST,
+    FETCH_PERSON_DETAIL_REQUEST
+} from "./constants"
 import iso6391 from 'iso-639-1';
 import axios from "axios"
 
 
 function* fetchPopularMovies() {
     try {
-        const response = yield call(axios.get, "https://api.themoviedb.org/3/discover/movie?api_key=583d43563d202f1e6dd6e28704ca9624&sort_by=popularity.desc&primary_release_year=2023")
+        const response = yield call(axios.get, `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&sort_by=popularity.desc&primary_release_year=2023`)
         const movies = response.data.results
         let movieData = movies.map((movie) => ({
             ...movie,
@@ -25,7 +36,7 @@ function* fetchPopularMovies() {
 
 function* fetchMovieDetail(movieId) {
     try {
-        const response = yield call(axios.get, `https://api.themoviedb.org/3/movie/${movieId}?api_key=583d43563d202f1e6dd6e28704ca9624&language=en-US&append_to_response=credits,reviews,articles,similar,videos`)
+        const response = yield call(axios.get, `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&append_to_response=credits,reviews,articles,similar,videos`)
         const movieDetail = response.data
         const { credits: { cast, crew } } = movieDetail
         let movieData = {
@@ -45,9 +56,10 @@ function* fetchMovieDetail(movieId) {
     }
 }
 
+
 function* fetchPersonDetail(personId) {
     try {
-        const response = yield call(axios.get, `https://api.themoviedb.org/3/person/${personId}?api_key=583d43563d202f1e6dd6e28704ca9624&language=en-US`)
+        const response = yield call(axios.get, `https://api.themoviedb.org/3/person/${personId}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`)
         const personDetail = response.data
         let personData = {
             ...personDetail,
@@ -59,7 +71,6 @@ function* fetchPersonDetail(personId) {
         yield put(fetchPersonDetailError(error))
     }
 }
-
 
 
 function* watchFetchMovieDetail() {
@@ -88,3 +99,5 @@ export default function* rootSaga() {
 
 
 // https://api.themoviedb.org/3/movie/603692?api_key=583d43563d202f1e6dd6e28704ca9624&language=en-US&append_to_response=credits,reviews,articles,similar,videos
+
+// https://api.themoviedb.org/3/movie/{movie_id}/rating?api_key=YOUR_API_KEY&session_id=YOUR_SESSION_ID

@@ -7,7 +7,10 @@ import {
     FETCH_MOVIE_DETAIL_ERROR,
     FETCH_PERSON_DETAIL_REQUEST,
     FETCH_PERSON_DETAIL_SUCCESS,
-    FETCH_PERSON_DETAIL_ERROR
+    FETCH_PERSON_DETAIL_ERROR,
+    FETCH_USER_SESSION_ID_REQUEST,
+    FETCH_USER_SESSION_ID_SUCCESS,
+    FETCH_USER_SESSION_ID_ERROR
 } from "./constants";
 
 
@@ -60,3 +63,18 @@ export const fetchPersonDetailError = (error) => ({
     type: FETCH_PERSON_DETAIL_ERROR,
     payload: error,
 });
+
+// actions for setting session_id for registered user
+export const fetchUserSessionIdRequest = () => ({
+    type: FETCH_USER_SESSION_ID_REQUEST
+})
+
+export const fetchUserSessionIdSuccess = (userSessionId) => ({
+    type: FETCH_USER_SESSION_ID_SUCCESS,
+    payload: userSessionId
+})
+
+export const fetchUserSessionIdError = (errorFetchingSessionId) => ({
+    type: FETCH_USER_SESSION_ID_ERROR,
+    payload: errorFetchingSessionId
+})

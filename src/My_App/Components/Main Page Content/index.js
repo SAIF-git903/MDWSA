@@ -9,6 +9,8 @@ function Content() {
 
     const data = useSelector(state => state.popularMoviesLatest);
 
+    const apiKey = process.env.TMDB_API_KEY
+    console.log(apiKey, "APIKEY")
 
     return (
         <>
